@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Website - Devansh Rusiya</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
 </head>
 <body>
     
@@ -256,7 +258,7 @@
 
 
             <div class="contactus-form-container">
-              <form class="form" action="">
+              <form id="contact-form" class="form" action="">
                 <div class="formfield-container">
                   <input class="formfield" 
                   type="text" 
@@ -296,6 +298,9 @@
 
           </div>
         </div>
+
+
+       
 
         <footer>
           <div class="container">
@@ -356,5 +361,27 @@
       backDelay: 1000,
     });
   </script>
+
+
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+     emailjs.init("q0SLEMfKDZwIpAyzT"); // Initialize EmailJS with your User ID
+
+     // Handle form submission
+     document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submit action
+
+        // Send form data via EmailJS
+        emailjs.sendForm('service_jac4cx8', 'template_2ihjpp5', this)
+           .then(function() {
+              alert('Message sent successfully!');
+           }, function(error) {
+              console.error('Failed to send email:', error);
+              alert('Failed to send message. Please try again.');
+           });
+     });
+  });
+</script>
 </body>
 </html>
